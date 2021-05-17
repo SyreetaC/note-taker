@@ -3,10 +3,12 @@
 
 const { Router } = require("express");
 
-const {} = require("");
+const { getAllNotes } = require("../controllers/generateNotes");
 
 const router = Router();
 
-router.get("/");
+router.get("/notes", getAllNotes);
 
 module.exports = router;
+
+//how do I then use this route to get a single note?
