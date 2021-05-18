@@ -4,7 +4,7 @@
 const express = require("express");
 const cors = require("cors");
 
-const viewRoutes = require("./routes/viewRoutes"),
+const viewRoutes = require("./routes/viewRoutes");
 const apiRoutes = require("./routes/apiRoutes");
 
 const PORT = 3000;
@@ -16,6 +16,8 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
+
+//Routing
 app.use("/", viewRoutes);
 app.use("/api", apiRoutes);
 

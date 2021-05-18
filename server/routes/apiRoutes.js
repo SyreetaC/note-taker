@@ -3,12 +3,14 @@
 
 const { Router } = require("express");
 
-const { getAllNotes } = require("../controllers/generateNotes");
+const { getAllNotes, getOneNote } = require("../controllers/noteController");
 
 const router = Router();
 
+//the URL would need to be "/api/notes"
 router.get("/notes", getAllNotes);
 
-module.exports = router;
+//the URL would need to be "/api/notes/123"
+router.get("/notes/:id", getOneNote);
 
-//how do I then use this route to get a single note?
+module.exports = router;
