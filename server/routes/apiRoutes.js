@@ -3,7 +3,7 @@
 
 const { Router } = require("express");
 
-const { getAllNotes, getOneNote } = require("../controllers/noteController");
+const { getAllNotes, writeNote } = require("../controllers/noteController");
 
 const router = Router();
 
@@ -11,6 +11,6 @@ const router = Router();
 router.get("/notes", getAllNotes);
 
 //the URL would need to be "/api/notes/123"
-router.get("/notes/:id", getOneNote);
+router.get("/notes/:id", writeNote);
 
 module.exports = router;

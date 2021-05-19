@@ -12,11 +12,17 @@ const getAllNotes = (req, res) => {
   const data = fs.readFileSync(filePath, "utf-8");
   res.json(JSON.parse(data));
 };
-const getOneNote = (req, res) => {
-  //res.json because you don't want to send a file, but read one.
-  res.send("getOneNote");
+
+const writeNote = (req, res) => {
+  try {
+    const filePath = path.join(__dirname, "../db/db.json");
+    fs.writeFileSync(filePath, "utf-8");
+    return JSON.parse();
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 // const deleteNote = (req, res) => {};
 
-module.exports = { getAllNotes, getOneNote };
+module.exports = { getAllNotes, writeNote };
