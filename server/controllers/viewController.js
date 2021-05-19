@@ -2,18 +2,18 @@ const path = require("path");
 
 //renders home page
 const getIndexHtml = (req, res) => {
-  filePath = path.join(__dirname, "../../public", "index.html");
+  const filePath = path.join(__dirname, "../../public", "index.html");
+  console.log(filePath);
   res.sendFile(filePath);
-  return filePath;
 };
 //try catch??
 //refactor later
 
 //renders notes page
 const getNotesHtml = (req, res) => {
-  filePath = path.join(__dirname, "../../public", "notes.html");
+  const filePath = path.join(__dirname, "../../public", "notes.html");
+  console.log(filePath);
   res.sendFile(filePath);
-  return filePath;
 };
 
 module.exports = {

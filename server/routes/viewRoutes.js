@@ -1,7 +1,9 @@
 //sending html files
 
 const { Router } = require("express");
+
 const { getNotesHtml, getIndexHtml } = require("../controllers/viewController");
+
 const router = Router();
 
 //Ordering is important!!
