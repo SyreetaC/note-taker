@@ -1,4 +1,5 @@
 //all functions for note in here- e.g. CRUD operations
+//getting notes from db
 
 // const writeNote = (req, res) => {};
 

@@ -7,6 +7,7 @@ const getIndexHtml = (req, res) => {
   return filePath;
 };
 //try catch??
+//refactor later
 
 //renders notes page
 const getNotesHtml = (req, res) => {
