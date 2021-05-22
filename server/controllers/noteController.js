@@ -1,33 +1,33 @@
-const path = require("path");
-const fs = require("fs");
 const { v4: uuidv4 } = require("uuid");
-const { json } = require("express");
-
+const readFromDb = require("../db/readFromFile");
+const writeToDb = require("../db/writeToFile");
 //all functions for note in here- e.g. CRUD operations
+
 //getting notes from db
-
 const getAllNotes = (req, res) => {
-  //res.json because you don't want to send a file, but read one.
-  const filePath = path.join(__dirname, "../db/db.json");
-  const data = fs.readFileSync(filePath, "utf-8");
-  res.json(JSON.parse(data));
+  const notes = readFromDb();
+  res.json(notes);
+  return notes;
 };
 
-const saveNote = (req, res) => {};
-
+//function to write a new note
 const writeNote = (req, res) => {
-  try {
-    const filePath = path.join(__dirname, "../db/db.json");
-    const notes = fs.readFileSync(filePath, "utf-8");
-    const newNote = { ...req.body, id: uuidv4() };
-    const data = [...JSON.parse(notes), newNote];
-    fs.writeFileSync(filePath, JSON.stringify(data));
-    res.json(data);
-  } catch (err) {
-    console.log(err);
-  }
+  const notes = readFromDb();
+  const newNote = { ...req.body, id: uuidv4() };
+  const data = [...notes, newNote];
+  writeToDb(data);
+  res.json(data);
 };
 
-// const deleteNote = (req, res) => {};
+//function to delete note based on the id
+const deleteNote = (req, res) => {
+  const existingNotes = readFromDb(req, res);
+  const id = req.params.id;
+  const noteForDeletion = existingNotes.filter((each) => {
+    return each.id !== id;
+  });
+  writeToDb(noteForDeletion);
+  res.json(noteForDeletion);
+};
 
-module.exports = { getAllNotes, writeNote, saveNote };
+module.exports = { getAllNotes, writeNote, deleteNote };
