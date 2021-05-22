@@ -6,15 +6,18 @@ const { Router } = require("express");
 const {
   getAllNotes,
   writeNote,
-  saveNote,
+  deleteNote,
 } = require("../controllers/noteController");
 
 const router = Router();
 
-//the URL would need to be "/api/notes"
+//URL to read notes
 router.get("/notes", getAllNotes);
 
-//the URL would need to be "/api/notes/123"
+//URL to write a note
 router.post("/notes", writeNote);
+
+//URL to delete note
+router.delete("/notes/:id", deleteNote);
 
 module.exports = router;
