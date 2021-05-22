@@ -1,10 +1,10 @@
 const path = require("path");
 const fs = require("fs");
+const { v4: uuidv4 } = require("uuid");
+const { json } = require("express");
 
 //all functions for note in here- e.g. CRUD operations
 //getting notes from db
-
-// const writeNote = (req, res) => {};
 
 const getAllNotes = (req, res) => {
   //res.json because you don't want to send a file, but read one.
@@ -13,11 +13,16 @@ const getAllNotes = (req, res) => {
   res.json(JSON.parse(data));
 };
 
+const saveNote = (req, res) => {};
+
 const writeNote = (req, res) => {
   try {
     const filePath = path.join(__dirname, "../db/db.json");
-    fs.writeFileSync(filePath, "utf-8");
-    return JSON.parse();
+    const notes = fs.readFileSync(filePath, "utf-8");
+    const newNote = { ...req.body, id: uuidv4() };
+    const data = [...JSON.parse(notes), newNote];
+    fs.writeFileSync(filePath, JSON.stringify(data));
+    res.json(data);
   } catch (err) {
     console.log(err);
   }
@@ -25,4 +30,4 @@ const writeNote = (req, res) => {
 
 // const deleteNote = (req, res) => {};
 
-module.exports = { getAllNotes, writeNote };
+module.exports = { getAllNotes, writeNote, saveNote };
