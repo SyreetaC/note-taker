@@ -29,3 +29,9 @@ https://lit-wildwood-61935.herokuapp.com/notes
 ## Screenshots
 
 The following images show the web application's appearance and functionality:
+
+![Existing notes rendered on left-hand column, with empty field to input a new note.](./public/assets/screenshots/write-new-note.png)
+
+![New note rendered onto left-hand column.](./public/assets/screenshots/new-note.png)
+
+![Note deleted using delete icon.](./public/assets/screenshots/note-deleted.png)
